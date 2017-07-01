@@ -7,10 +7,13 @@
     "babel-polyfill": "^6.23.0",
     "compression": "^1.6.2",
     "express": "^4.15.3",
+    "isomorphic-fetch": "^2.2.1",
+    "proxyquire": "^1.8.0",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-hot-loader": "next",
-    "superagent": "^3.5.2"
+    "superagent": "^3.5.2",
+    "tape": "^4.7.0"
   },
   "scripts": {
     "start": "yarn dev:start",
@@ -20,14 +23,14 @@
     "prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
     "prod:stop": "pm2 delete server",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
-    "test": "yarn lint && jest --coverage",
-    "prepush": "yarn test && yarn prod:build"
+    "test": "yarn lint && yarn test:unit",
+    "prepush": "yarn test && yarn prod:build",
+    "test:unit": "tape src/**/*.test.js | tap-dot"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
-    "babel-jest": "^20.0.3",
     "babel-loader": "^7.1.1",
     "babel-plugin-flow-react-proptypes": "^3.4.1",
     "babel-preset-env": "^1.5.2",
@@ -43,10 +46,11 @@
     "eslint-plugin-react": "^7.1.0",
     "flow-bin": "^0.49.1",
     "husky": "^0.14.1",
-    "jest": "^20.0.4",
     "nodemon": "^1.11.0",
     "pm2": "^2.5.0",
     "rimraf": "^2.6.1",
+    "sinon": "^2.3.6",
+    "tap-dot": "^1.0.5",
     "webpack": "^3.0.0",
     "webpack-dev-server": "^2.5.0"
   },
