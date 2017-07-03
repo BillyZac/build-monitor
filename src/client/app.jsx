@@ -33,7 +33,7 @@ class App extends React.Component {
         <h2>Build history</h2>
         { this.state.builds.map(build => (
           <p>
-            {build.status ? ':)' : ':('} {build.number} {build.message}
+            {build.result ? ':)' : ':('} {build.number} {build.message}
           </p>),
         )}
       </div>

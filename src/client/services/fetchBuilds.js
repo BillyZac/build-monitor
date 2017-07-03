@@ -12,7 +12,7 @@ const fetchBuilds = url => new Promise((resolve, reject) => {
       const cleanBuildData = rawBuildData.map(build => ({
         id: build.id,
         number: Number(build.number),
-        status: build.state !== 'failed',
+        result: build.result === 0,
         message: build.message,
       }))
       resolve(cleanBuildData)
