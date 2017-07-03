@@ -1,41 +1,32 @@
 import React from 'react'
-import fetchBuilds from './services/fetchBuilds'
-import fetchBuildStatus from './services/fetchBuildStatus'
+import fetchRepoStatus from './services/fetchRepoStatus'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      buildUrl: 'https://api.travis-ci.org/repos/buildit/bookit-web/builds',
-      buildStatusBadgeUrl: 'https://api.travis-ci.org/buildit/bookit-web.svg',
-      builds: [],
-      status: true,
+      repo: 'buildit/bookit-web',
+      status: {},
     }
   }
 
   componentDidMount() {
-    fetchBuilds(this.state.buildUrl)
-      .then((builds) => {
-        this.setState({ builds })
-      })
-
-    fetchBuildStatus(this.state.buildStatusBadgeUrl)
+    fetchRepoStatus(this.state.repo)
       .then((status) => {
         this.setState({ status })
       })
   }
 
   render() {
+    const status = this.state.status
     return (
       <div>
-        <h2>Status</h2>
-        <p>{ this.state.status ? ':)' : ':(' }</p>
-        <h2>Build history</h2>
-        { this.state.builds.map(build => (
-          <p>
-            {build.result ? ':)' : ':('} {build.number} {build.message}
-          </p>),
-        )}
+        <h1>Bookit web</h1>
+        <div>
+          <span style={{ margin: '1rem' }}>{status.result ? ':)' : ':('}</span>
+          <span style={{ margin: '1rem' }}>#{status.number}</span>
+          <span style={{ margin: '1rem' }}>{status.message}</span>
+        </div>
       </div>
     )
   }
