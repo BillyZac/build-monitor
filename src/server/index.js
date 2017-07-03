@@ -10,8 +10,8 @@ import renderApp from './render-app'
 const app = express()
 
 app.use(compression())
-app.use(STATIC_PATH, express.static('dist'))
 app.use(STATIC_PATH, express.static('public'))
+app.use(STATIC_PATH, express.static('dist'))
 
 app.get('/', (req, res) => {
   res.send(renderApp(APP_NAME))
