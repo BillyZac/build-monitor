@@ -23,7 +23,7 @@ test('Builds fetcher correctly maps the build information', (t) => {
     .then((builds) => {
       const desiredResult = {
         id: 123,
-        status: false,
+        result: false,
         message: 'Fix everything',
         number: 629,
       }
