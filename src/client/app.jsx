@@ -21,11 +21,23 @@ class App extends React.Component {
     const status = this.state.status
     return (
       <div>
-        <h1>Bookit web</h1>
-        <div>
-          <span style={{ margin: '1rem' }}>{status.result ? ':)' : ':('}</span>
-          <span style={{ margin: '1rem' }}>#{status.number}</span>
-          <span style={{ margin: '1rem' }}>{status.message}</span>
+        <div style={{
+          display: 'flex', alignItems: 'baseline',
+        }}
+        >
+          <span style={{
+            margin: '0 0.5rem',
+            width: '0.7rem',
+            height: '0.7rem',
+            display: 'inline-block',
+            background: status.result ? '#37de0d' : '#ee1497',
+            borderRadius: '50%',
+          }}
+          />
+          <span style={{
+            margin: '0',
+          }}
+          >Bookit web</span>
         </div>
       </div>
     )
