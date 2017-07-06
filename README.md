@@ -21,3 +21,14 @@ I deployed via `now`. This is a very naive, very basic first step, just to get s
 Using Compat, which gives a linting warning if you try to use syntax not supported by all browsers with >1% market share.
 
 Using a Babel plugin called flow-react-proptypes, which automatically generates PropTypes from Flow annotations for your React components.
+
+
+
+
+
+
+
+
+
+
+:)
