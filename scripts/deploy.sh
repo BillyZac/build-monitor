@@ -1,2 +1,2 @@
-echo "Can you see this?"
-# now --token $ZEIT_NOW_TOKEN --docker --public
+echo "Deploying with Zeit Now"
+now --token $ZEIT_NOW_TOKEN --docker --public
