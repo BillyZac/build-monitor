@@ -18,6 +18,7 @@
   },
   "scripts": {
     "start": "yarn dev:start",
+    "test": "yarn lint && yarn flow && yarn test:unit",
     "dev:start": "nodemon -e js,jsx --ignore lib --ignore dist --exec babel-node src/server",
     "dev:wds": "webpack-dev-server --progress",
     "dockerize": "docker build -t build-monitor . && docker run -p 80:8000 build-monitor",
@@ -25,7 +26,6 @@
     "prod:start": "cross-env NODE_ENV=production pm2 start lib/server && pm2 logs",
     "prod:stop": "pm2 delete server",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
-    "test": "yarn lint && yarn test:unit",
     "prepush": "yarn test && yarn prod:build",
     "test:unit": "tape src/**/*.test.js | tap-dot"
   },
