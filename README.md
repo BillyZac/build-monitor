@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/BillyZac/build-monitor.svg?branch=master)](https://travis-ci.org/BillyZac/build-monitor)
+
 ## Install stuff
 yarn
 
