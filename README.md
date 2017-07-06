@@ -17,7 +17,15 @@ yarn prod:start
 yarn prod:stop
 
 ## Deployment
-I deployed via `now`. This is a very naive, very basic first step, just to get something up on the internet.
+The current deployment strategy works like this:
+
+Push to GitHub.
+Travis validates. If everything passes and the branch is master
+Travis attempts to do a dev deployment with Zeit's now.
+
+Find the most recent deployment url with `now ls`.
+
+If the `now` dev deployment looks good, upgrade it to prod with `now alias https://build-monitor-bicauqewhr.now.sh build-monitor`
 
 ## Notes
 Using Compat, which gives a linting warning if you try to use syntax not supported by all browsers with >1% market share.
