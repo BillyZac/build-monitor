@@ -2,7 +2,7 @@
 
 export const WEB_PORT = process.env.PORT || 8000
 export const STATIC_PATH = '/static'
-export const APP_NAME = 'Helloooo App'
+export const APP_NAME = 'Build monitor'
 
 export const WDS_PORT = 7000
 
