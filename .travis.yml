@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "8"
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 0.26.1
+  - npm install -g now
+
+install:
+  - yarn
+
+script:
+  - yarn test
+
+deploy:
+  provider: script
+  script: scripts/deploy.sh
