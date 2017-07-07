@@ -11,6 +11,7 @@ test('Builds fetcher correctly maps the build information', (t) => {
   fetchRepoStatus('mockGithubUser/mock-repo-name')
     .then((currentBuildStatus) => {
       const desiredResult = {
+        name: 'mockGithubUser/mock-repo-name',
         id: 123,
         message: 'Add stuff',
         number: 639,
