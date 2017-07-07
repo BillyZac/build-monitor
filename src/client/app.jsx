@@ -1,53 +1,43 @@
 import React from 'react'
 import moment from 'moment'
-import fetchRepoStatus from './services/fetchRepoStatus'
+import fetchRepoStatuses from './services/fetchRepoStatuses'
 import TimeStamp from './components/TimeStamp'
+import ProjectStatus from './components/ProjectStatus'
+import { PROJECTS } from '../shared/config'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      repo: 'buildit/bookit-web',
-      status: {},
+      repos: PROJECTS,
       lastUpdated: {},
+      projectStatuses: [],
     }
   }
 
   componentDidMount() {
-    const POLLING_INTERVAL = 10000 // milliseconds
+    const POLLING_INTERVAL = 1000 // milliseconds
     setInterval(() => {
-      fetchRepoStatus(this.state.repo)
-        .then((status) => {
+      fetchRepoStatuses(this.state.repos)
+        .then((projectStatuses) => {
           const lastUpdated = moment()
-          this.setState({ lastUpdated, status })
+          this.setState({ projectStatuses, lastUpdated })
+        })
+        .catch((err) => {
+          console.log(err.message)
         })
     }, POLLING_INTERVAL)
   }
 
   render() {
-    const { status, lastUpdated } = this.state
+    const { lastUpdated, projectStatuses } = this.state
+
     return (
       <div>
         <div className="statusList">
-          <div style={{
-            display: 'flex',
-            alignItems: 'baseline',
-          }}
-          >
-            <span style={{
-              margin: '0 0.5rem',
-              width: '0.7rem',
-              height: '0.7rem',
-              display: 'inline-block',
-              background: status.result ? '#37de0d' : '#ee1497',
-              borderRadius: '50%',
-            }}
-            />
-            <span style={{
-              margin: '0',
-            }}
-            >Bookit web</span>
-          </div>
+          { projectStatuses.map(
+            status => <ProjectStatus name={status.name} buildResult={status.result} />,
+          )}
         </div>
         <TimeStamp lastUpdated={lastUpdated} />
       </div>

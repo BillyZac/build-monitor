@@ -1,20 +1,32 @@
 [![Build Status](https://travis-ci.org/BillyZac/build-monitor.svg?branch=master)](https://travis-ci.org/BillyZac/build-monitor)
 
-## Install stuff
+## Install dependencies
+```
 yarn
+```
 
 ## Dev: start server and client
+```
 yarn start
 yarn dev:wds
+```
 
 ## Build and run a Docker image locally
+```
 yarn dockerize
+```
 Visit http://localhost/
 
+
 ## Prod
+```
 yarn prod:build
 yarn prod:start
 yarn prod:stop
+```
+
+## Configuring projects
+The app will list build status for any repository listed in `PROJECTS` in `src/shared/config.js`. (This hard-coded list will be replaced by [a user-editable list at some point](https://github.com/BillyZac/build-monitor/issues/23).)
 
 ## Deployment
 The current deployment strategy works like this:
@@ -31,14 +43,3 @@ If the `now` dev deployment looks good, upgrade it to prod with `now alias https
 Using Compat, which gives a linting warning if you try to use syntax not supported by all browsers with >1% market share.
 
 Using a Babel plugin called flow-react-proptypes, which automatically generates PropTypes from Flow annotations for your React components.
-
-
-
-
-
-
-
-
-
-
-:)

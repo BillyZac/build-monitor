@@ -5,7 +5,9 @@ const fetchRepoStatus = repo => new Promise((resolve, reject) => {
 
   fetchBuilds(url)
     .then((builds) => {
-      resolve(builds[0])
+      resolve(Object.assign({
+        name: repo,
+      }, builds[0]))
     })
     .catch((err) => {
       reject(err)
