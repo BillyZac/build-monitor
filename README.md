@@ -35,9 +35,12 @@ Push to GitHub.
 Travis validates. If everything passes and the branch is master
 Travis attempts to do a dev deployment with Zeit's now.
 
-Find the most recent deployment url with `now ls`.
+### Upgrading a dev deployment to Production
+Run `now ls`. This lists deployment urls, with the most recent at the top. (Each deployment url is also available in the raw Travis logs for every build.)
 
-If the `now` dev deployment looks good, upgrade it to prod with `now alias https://build-monitor-bicauqewhr.now.sh build-monitor`
+Look at `./scripts/upgrade-to-prod.sh`. Replace the existing dev url with the new one. (This is checked into version control, which gives us some minimal way of tracking these upgrades.)
+
+Run `./scripts/upgrade-to-prod.sh`.
 
 ## Notes
 Using Compat, which gives a linting warning if you try to use syntax not supported by all browsers with >1% market share.
