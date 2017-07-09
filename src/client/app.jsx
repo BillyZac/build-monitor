@@ -16,14 +16,17 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetchProjectStatuses(this.state.projects)
-      .then((projectStatuses) => {
-        const lastUpdated = moment()
-        this.setState({ projectStatuses, lastUpdated })
-      })
-      .catch((err) => {
-        console.error(err)
-      })
+    const POLLING_INTERVAL = 10000
+    setInterval(() => {
+      fetchProjectStatuses(this.state.projects)
+        .then((projectStatuses) => {
+          const lastUpdated = moment()
+          this.setState({ projectStatuses, lastUpdated })
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }, POLLING_INTERVAL)
   }
 
   render() {
