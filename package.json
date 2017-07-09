@@ -6,6 +6,7 @@
   "dependencies": {
     "babel-polyfill": "^6.23.0",
     "compression": "^1.6.2",
+    "cors": "^2.8.3",
     "express": "^4.15.3",
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.18.1",
@@ -27,7 +28,7 @@
     "prod:stop": "pm2 delete server",
     "lint": "eslint src webpack.config.babel.js --ext .js,.jsx",
     "prepush": "yarn test && yarn prod:build",
-    "test:unit": "tape src/**/*.test.js | tap-dot"
+    "test:unit": "flow-remove-types src -d test-src && tape test-src/**/*.test.js | tap-dot"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -47,6 +48,7 @@
     "eslint-plugin-jsx-a11y": "^5.1.0",
     "eslint-plugin-react": "^7.1.0",
     "flow-bin": "^0.49.1",
+    "flow-remove-types": "^1.2.1",
     "husky": "^0.14.1",
     "nodemon": "^1.11.0",
     "pm2": "^2.5.0",

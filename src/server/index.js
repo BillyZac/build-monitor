@@ -1,11 +1,15 @@
 // @flow
 
+
 import compression from 'compression'
 import express from 'express'
+import cors from 'cors'
 
 import { APP_NAME, STATIC_PATH, WEB_PORT } from '../shared/config'
 import { isProd } from '../shared/util'
 import renderApp from './render-app'
+
+const fetch = require('isomorphic-fetch')
 
 const app = express()
 
@@ -15,6 +19,26 @@ app.use(STATIC_PATH, express.static('dist'))
 
 app.get('/', (req, res) => {
   res.send(renderApp(APP_NAME))
+})
+
+app.get('/ping', cors(), (req, res) => {
+  const url = req.query.deployedUrl
+  if (url === '') {
+    res.json(null)
+  } else {
+    fetch(url, { method: 'GET' })
+    .then((response) => {
+      if (response.status >= 400) {
+        res.json(false)
+      }
+      res.json(true)
+    })
+    .catch((err) => {
+      console.error(err.message)
+      res.status(500)
+        .json(`Ping failed: ${url}`)
+    })
+  }
 })
 
 app.listen(WEB_PORT, () => {
