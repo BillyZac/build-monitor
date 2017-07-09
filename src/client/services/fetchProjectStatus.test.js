@@ -3,7 +3,7 @@
 const test = require('tape')
 const proxyquire = require('proxyquire')
 
-const fetchRepoStatus = proxyquire('./fetchRepoStatus', {
+const fetchRepoStatus = proxyquire('./fetchProjectStatus', {
   './fetchBuilds': fetchBuildsStub,
   './ping': pingStub,
 })
