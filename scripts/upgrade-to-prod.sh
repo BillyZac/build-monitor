@@ -1,1 +1,1 @@
-now alias https://build-monitor-lquriinogf.now.sh/ build-monitor
+now alias https://build-monitor-xfwoetizho.now.sh build-monitor

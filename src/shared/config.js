@@ -10,6 +10,12 @@ export const APP_CONTAINER_CLASS = 'js-app'
 export const APP_CONTAINER_SELECTOR = `.${APP_CONTAINER_CLASS}`
 
 export const PROJECTS = [
-  'buildit/bookit-web',
-  'buildit/bookit-server',
+  {
+    repo: 'buildit/bookit-web',
+    deployedUrl: 'http://bookit.riglet.io',
+  },
+  {
+    repo: 'buildit/bookit-server',
+    deployedUrl: '',
+  },
 ]

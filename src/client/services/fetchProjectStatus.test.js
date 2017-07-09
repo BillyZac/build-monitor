@@ -5,23 +5,29 @@ const proxyquire = require('proxyquire')
 
 const fetchRepoStatus = proxyquire('./fetchRepoStatus', {
   './fetchBuilds': fetchBuildsStub,
+  './ping': pingStub,
 })
 
-test('Builds fetcher correctly maps the build information', (t) => {
-  fetchRepoStatus('mockGithubUser/mock-repo-name')
+test('Status checker correctly maps the build and ping information', (t) => {
+  const project = {
+    repo: 'mockGithubUser/mock-repo-name',
+    deployedUrl: 'http://mock.com',
+  }
+  fetchRepoStatus(project)
     .then((currentBuildStatus) => {
       const desiredResult = {
         name: 'mockGithubUser/mock-repo-name',
         id: 123,
         message: 'Add stuff',
         number: 639,
-        result: true,
+        buildResult: true,
+        pingResult: true,
       }
 
-      t.deepEqual(currentBuildStatus, desiredResult, 'The latest build status should be returned.')
+      t.deepEqual(currentBuildStatus, desiredResult, 'The latest project status should be returned.')
     })
     .catch((err) => {
-      t.deepEqual(true, false, err.message)
+      t.fail(err)
     })
 
   t.end()
@@ -52,4 +58,8 @@ function fetchBuildsStub() {
   ]
 
   return Promise.resolve(data)
+}
+
+function pingStub() {
+  return Promise.resolve(true)
 }
