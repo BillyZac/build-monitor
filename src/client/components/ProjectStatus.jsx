@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import StatusIndicator from './StatusIndicator'
 
 type Props = {
   name: string,
@@ -9,23 +10,10 @@ type Props = {
 }
 
 const ProjectStatus = ({ name, buildResult, pingResult }: Props) => (
-  <div style={{
-    display: 'flex',
-    alignItems: 'baseline',
-  }}
-  >
-    { buildResult ?
-      <span>😎</span> :
-      <span>💀</span> }
-
-    { pingResult ?
-      <span>😎</span> :
-      <span>💀</span> }
-
-    <span style={{
-      margin: '0',
-    }}
-    >{ name }</span>
+  <div>
+    <StatusIndicator result={buildResult} />
+    <StatusIndicator result={pingResult} />
+    <span style={{ margin: '0' }}>{ name }</span>
   </div>
   )
 
