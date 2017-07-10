@@ -17,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const POLLING_INTERVAL = 1000
+    const POLLING_INTERVAL = 10000
     setInterval(() => {
       fetchProjectStatuses(this.state.projects)
         .then((projectStatuses) => {
