@@ -14,4 +14,4 @@ script:
 
 deploy:
   provider: script
-  script: scripts/deploy.sh
+  script: scripts/deploy.sh $ZEIT_NOW_TOKEN
