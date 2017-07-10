@@ -8,8 +8,8 @@ type Props = {
 
 const StatusIndicator = ({ result }: Props) => (
   result ?
-    <span style={{ marginRight: '0.3rem' }} role="img" aria-label="Success">😎</span> :
-    <span style={{ marginRight: '0.3rem' }} role="img" aria-label="Failure">💀</span>
+    <span role="img" aria-label="Success">😎</span> :
+    <span role="img" aria-label="Failure">💀</span>
 )
 
 export default StatusIndicator

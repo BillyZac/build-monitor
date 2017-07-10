@@ -1,8 +1,9 @@
 import React from 'react'
 import moment from 'moment'
 import fetchProjectStatuses from './services/fetchProjectStatuses'
+import StatusTable from './components/StatusTable'
 import TimeStamp from './components/TimeStamp'
-import ProjectStatus from './components/ProjectStatus'
+
 import { PROJECTS } from '../shared/config'
 
 class App extends React.Component {
@@ -16,7 +17,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const POLLING_INTERVAL = 10000
+    const POLLING_INTERVAL = 1000
     setInterval(() => {
       fetchProjectStatuses(this.state.projects)
         .then((projectStatuses) => {
@@ -34,16 +35,10 @@ class App extends React.Component {
 
     return (
       <div>
-        <div className="statusList">
-          { projectStatuses.map(
-            status => (
-              <ProjectStatus
-                name={status.name}
-                buildResult={status.buildResult}
-                pingResult={status.pingResult}
-              />),
-          )}
-        </div>
+        { projectStatuses.length > 0 ?
+          <StatusTable projectStatuses={projectStatuses} /> :
+          <div>Loading...</div>
+        }
         <TimeStamp lastUpdated={lastUpdated} />
       </div>
     )
