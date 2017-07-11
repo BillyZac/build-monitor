@@ -26,6 +26,7 @@ test('Builds fetcher correctly maps the build information', (t) => {
         result: false,
         message: 'Fix everything',
         number: 629,
+        branch: 'master',
       }
 
       t.deepEqual(builds[0], desiredResult, 'The build info should be translated to our domain.')
