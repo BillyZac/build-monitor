@@ -6,23 +6,25 @@ const fetchProjectStatus = project => new Promise((resolve, reject) => {
 
   fetchBuilds(pingUrl)
     .then((builds) => {
-      const latestBuild = builds[0]
+      const latestMasterBuild = builds.filter(build => build.branch === 'master')[0]
       return {
         name: project.repo,
-        id: latestBuild.id,
-        message: latestBuild.message,
-        number: latestBuild.number,
-        buildResult: latestBuild.result,
+        id: latestMasterBuild.id,
+        message: latestMasterBuild.message,
+        number: latestMasterBuild.number,
+        buildResult: latestMasterBuild.result,
       }
     })
-    .then((latestBuild) => {
+    .then((buildStatus) => {
       ping(project.deployedUrl)
         .then((pingResult) => {
-          resolve(Object.assign({ pingResult }, latestBuild))
+          const projectStatus = Object.assign({ pingResult }, buildStatus)
+          resolve(projectStatus)
         })
         .catch((err) => {
           console.error(err)
-          resolve(Object.assign({ pingResult: null }, latestBuild))
+          const projectStatus = Object.assign({ pingResult: null }, buildStatus)
+          resolve(projectStatus)
         })
     })
     .catch((err) => {

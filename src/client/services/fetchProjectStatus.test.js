@@ -8,7 +8,7 @@ const fetchRepoStatus = proxyquire('./fetchProjectStatus', {
   './ping': pingStub,
 })
 
-test('Status checker correctly maps the build and ping information', (t) => {
+test('Status checker only cares about the master branch', (t) => {
   const project = {
     repo: 'mockGithubUser/mock-repo-name',
     deployedUrl: 'http://mock.com',
@@ -17,14 +17,14 @@ test('Status checker correctly maps the build and ping information', (t) => {
     .then((currentBuildStatus) => {
       const desiredResult = {
         name: 'mockGithubUser/mock-repo-name',
-        id: 123,
-        message: 'Add stuff',
-        number: 639,
-        buildResult: true,
+        id: 456,
+        message: 'Do things',
+        number: 638,
+        buildResult: false,
         pingResult: true,
       }
 
-      t.deepEqual(currentBuildStatus, desiredResult, 'The latest project status should be returned.')
+      t.deepEqual(currentBuildStatus, desiredResult, 'Only master branch should be considered in status check.')
     })
     .catch((err) => {
       t.fail(err)
@@ -42,18 +42,21 @@ function fetchBuildsStub() {
       message: 'Add stuff',
       number: 639,
       result: true,
+      branch: 'some-feature',
     },
     {
       id: 456,
       message: 'Do things',
       number: 638,
       result: false,
+      branch: 'master',
     },
     {
       id: 789,
       message: 'Break a leg, killa',
       number: 637,
       result: true,
+      branch: 'some-feature',
     },
   ]
 

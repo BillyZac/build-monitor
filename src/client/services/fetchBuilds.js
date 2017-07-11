@@ -14,6 +14,7 @@ const fetchBuilds = url => new Promise((resolve, reject) => {
         number: Number(build.number),
         result: build.result === 0,
         message: build.message,
+        branch: build.branch,
       }))
       resolve(cleanBuildData)
     })
