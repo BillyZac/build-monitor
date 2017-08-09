@@ -22,6 +22,7 @@ test('Status checker only cares about the master branch', (t) => {
         number: 638,
         buildResult: false,
         pingResult: true,
+        state: 'finished',
       }
 
       t.deepEqual(currentBuildStatus, desiredResult, 'Only master branch should be considered in status check.')
@@ -43,6 +44,7 @@ function fetchBuildsStub() {
       number: 639,
       result: true,
       branch: 'some-feature',
+      state: 'finished',
     },
     {
       id: 456,
@@ -50,6 +52,7 @@ function fetchBuildsStub() {
       number: 638,
       result: false,
       branch: 'master',
+      state: 'finished',
     },
     {
       id: 789,
@@ -57,6 +60,7 @@ function fetchBuildsStub() {
       number: 637,
       result: true,
       branch: 'some-feature',
+      state: 'created',
     },
   ]
 
