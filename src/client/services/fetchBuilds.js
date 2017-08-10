@@ -1,6 +1,17 @@
+// @flow
+
 const fetch = require('isomorphic-fetch')
 
-const fetchBuilds = url => new Promise((resolve, reject) => {
+const mapBuildData = build => ({
+  id: build.id,
+  number: Number(build.number),
+  result: build.result === 0,
+  message: build.message,
+  branch: build.branch,
+  state: build.state,
+})
+
+const fetchBuilds = (url: string) => new Promise((resolve, reject) => {
   fetch(url, { method: 'GET' })
     .then((response) => {
       if (response.status >= 400) {
@@ -9,13 +20,7 @@ const fetchBuilds = url => new Promise((resolve, reject) => {
       return response.json()
     })
     .then((rawBuildData) => {
-      const cleanBuildData = rawBuildData.map(build => ({
-        id: build.id,
-        number: Number(build.number),
-        result: build.result === 0,
-        message: build.message,
-        branch: build.branch,
-      }))
+      const cleanBuildData = rawBuildData.map(mapBuildData)
       resolve(cleanBuildData)
     })
     .catch((err) => {

@@ -22,6 +22,7 @@ const StatusTable = ({ projectStatuses }: Props) => (
           name={status.name}
           buildResult={status.buildResult}
           pingResult={status.pingResult}
+          buildState={status.state}
         />),
       )}
   </table>

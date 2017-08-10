@@ -24,6 +24,7 @@ test('Builds fetcher correctly maps the build information', (t) => {
       const desiredResult = {
         id: 123,
         result: false,
+        state: 'created',
         message: 'Fix everything',
         number: 629,
         branch: 'master',
@@ -43,7 +44,7 @@ function isomorphicFetchStub() {
       "id": 123,
       "repository_id": 12568571,
       "number": "629",
-      "state": "failed",
+      "state": "created",
       "result": 1,
       "started_at": "2017-06-30T14:59:47Z",
       "finished_at": "2017-06-30T15:03:16Z",

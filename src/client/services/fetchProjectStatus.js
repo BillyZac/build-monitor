@@ -13,6 +13,7 @@ const fetchProjectStatus = project => new Promise((resolve, reject) => {
         message: latestMasterBuild.message,
         number: latestMasterBuild.number,
         buildResult: latestMasterBuild.result,
+        state: latestMasterBuild.state,
       }
     })
     .then((buildStatus) => {
