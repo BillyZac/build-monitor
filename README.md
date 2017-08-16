@@ -29,11 +29,11 @@ yarn prod:stop
 The app will list build status for any repository listed in `PROJECTS` in `src/shared/config.js`. (This hard-coded list will be replaced by [a user-editable list at some point](https://github.com/BillyZac/build-monitor/issues/23).)
 
 ## Deployment
-The current deployment strategy works like this:
-
-Push to GitHub.
-Travis validates. If everything passes and the branch is master
-Travis attempts to do a dev deployment with Zeit's now.
+To deploy to a "staging" environment:
+```
+cat .env #I keep my Zeit Now token in here. 
+./scripts/deploy.sh <the zeit now token>
+```
 
 ### Upgrading a dev deployment to Production
 Run `now ls`. This lists deployment urls, with the most recent at the top. (Each deployment url is also available in the raw Travis logs for every build.)
