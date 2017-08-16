@@ -16,6 +16,6 @@ export const PROJECTS = [
   },
   {
     repo: 'buildit/bookit-server',
-    deployedUrl: 'http://bookit.riglet.io:8888/test',
+    deployedUrl: 'http://bookit.riglet.io/api/test',
   },
 ]
